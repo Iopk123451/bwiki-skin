@@ -1,0 +1,110 @@
+{
+	"name": "BWIKI",
+	"version": "1.0.0",
+	"author": [
+		"Iopk123451"
+	],
+	"url": "https://opk-test.infinityfree.me",
+	"descriptionmsg": "bwiki-skin-desc",
+	"namemsg": "skinname-bwiki",
+	"license-name": "GPL-2.0-or-later",
+	"type": "skin",
+	"requires": {
+		"MediaWiki": ">= 1.46"
+	},
+	"ValidSkinNames": {
+		"bwiki": {
+			"class": "MediaWiki\\Skins\\BWIKI\\SkinBWIKI",
+			"args": [
+				{
+					"name": "bwiki",
+					"responsive": true,
+					"wrapSiteNotice": false,
+					"templateDirectory": "templates",
+					"template": "skin",
+					"bodyClasses": [
+						"skin-vector",
+						"skin-vector-legacy"
+					],
+					"menus": [
+						"user-interface-preferences",
+						"user-page",
+						"notifications",
+						"user-menu",
+						"associated-pages",
+						"views",
+						"actions",
+						"variants"
+					],
+					"styles": [
+						"skins.bwiki.styles"
+					],
+					"scripts": [
+						"skins.bwiki.scripts"
+					],
+					"messages": [
+						"navigation-heading",
+						"search",
+						"searchbutton",
+						"searcharticle",
+						"sitetitle",
+						"tagline",
+						"personaltools",
+						"bwiki-wiki-functions",
+						"bwiki-site-notice-label",
+						"bwiki-page-contributors"
+					]
+				}
+			]
+		}
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Skins\\BWIKI\\": "includes/"
+	},
+	"MessagesDirs": {
+		"BWIKI": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"skins.bwiki.styles": {
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"logo": true,
+				"content-media": true,
+				"content-links": true,
+				"content-links-external": true,
+				"content-tables": true,
+				"interface": true,
+				"interface-category": true,
+				"i18n-ordered-lists": true,
+				"i18n-headings": true
+			},
+			"styles": []
+		},
+		"skins.bwiki.scripts": {
+			"packageFiles": [
+				"resources/skin.js"
+			],
+			"dependencies": [
+				"mediawiki.util",
+				"mediawiki.page.ready"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "BWIKI"
+	},
+	"manifest_version": 2,
+	"Hooks": {
+		"BeforePageDisplay": "BWIKIBundle"
+	},
+	"HookHandlers": {
+		"BWIKIBundle": {
+			"class": "MediaWiki\\Skins\\BWIKI\\HookHandler"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iopk123451"
+		]
+	},
+	"skinname-bwiki": "BWIKI",
+	"bwiki-skin-desc": "A standalone BWIKI-style MediaWiki skin with a local implementation of the public BWIKI page shell.",
+	"bwiki-wiki-functions": "WIKI features",
+	"bwiki-site-notice-label": "Site notice:",
+	"bwiki-page-contributors": "Page contributors",
+	"bwiki-contributor-label": "Contributor",
+	"bwiki-system-user": "System",
+	"bwiki-back": "Back",
+	"bwiki-close": "Close",
+	"bwiki-menu": "Menu"
+}

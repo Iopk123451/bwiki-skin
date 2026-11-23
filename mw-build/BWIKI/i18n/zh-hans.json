@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iopk123451"
+		]
+	},
+	"skinname-bwiki": "BWIKI",
+	"bwiki-skin-desc": "独立实现 BWIKI 页面结构的 MediaWiki 皮肤，不依赖外部站点 CSS、JavaScript 或 Widget。",
+	"bwiki-wiki-functions": "WIKI功能",
+	"bwiki-site-notice-label": "全站通知：",
+	"bwiki-page-contributors": "页面贡献者",
+	"bwiki-contributor-label": "贡献者",
+	"bwiki-system-user": "系统",
+	"bwiki-back": "返回",
+	"bwiki-close": "关闭",
+	"bwiki-menu": "菜单"
+}

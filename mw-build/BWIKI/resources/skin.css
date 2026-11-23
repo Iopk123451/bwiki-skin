@@ -1,0 +1,764 @@
+/*
+ * BWIKI skin stylesheet.
+ * Independently implemented for the local MediaWiki installation.
+ * No stylesheet from wiki.biligame.com or any site-level Common.css is used.
+ */
+
+:root {
+	--bwiki-blue: #00a1d6;
+	--bwiki-blue-dark: #0785b5;
+	--bwiki-pink: #fb7299;
+	--bwiki-text: #3b3f45;
+	--bwiki-muted: #8b929d;
+	--bwiki-line: #e5e9ef;
+	--bwiki-panel: #fff;
+	--bwiki-page: #f4f5f7;
+	--bwiki-width: 1200px;
+}
+
+html,
+body {
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	background: #f6f6f6;
+	color: #333;
+	font-size: 14px;
+	line-height: 1.42857143;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* Bootstrap grid and utilities are provided by resources/bundle/bootstrap.min.css */
+
+/* Global account strip */
+#biliGameHeader {
+	box-sizing: border-box;
+	height: 50px;
+	background: rgba(255, 255, 255, .98);
+	border-bottom: 1px solid var(--bwiki-line);
+	box-shadow: 0 1px 4px rgba(31, 45, 61, .08);
+}
+
+.bwiki-global-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+	max-width: var(--bwiki-width);
+	height: 50px;
+	margin: 0 auto;
+	padding: 0 18px;
+}
+
+.bwiki-global-brand {
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	color: var(--bwiki-blue);
+}
+
+.bwiki-global-user {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 13px;
+}
+
+.bwiki-global-user li {
+	margin: 0;
+}
+
+/* Site shell and navigation */
+.game-bg {
+	position: relative;
+	background: #fff;
+}
+
+.wiki-header {
+	position: relative;
+	padding: 20px 0 24px;
+	background: #fff;
+}
+
+/* The official bundle shows .nav-head (logo bar) on all widths; the desktop
+ * menu row (.wiki-nav) renders below it, matching the reference site. */
+.nav-head {
+	position: relative;
+	height: 52px;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (min-width: 992px) {
+	/* Desktop logo bar matches the reference site: 100px tall, bundle logo
+	 * (300x80) at the top-left, 20px gap above the .wiki-nav menu row. */
+	.nav-head {
+		height: 100px;
+		padding: 0;
+	}
+}
+
+.wiki-logo {
+	display: inline-flex;
+	align-items: center;
+	min-height: 48px;
+}
+
+.pic-logo {
+	display: block;
+	width: auto;
+	max-width: 210px;
+	height: 56px;
+	object-fit: contain;
+}
+
+.personal-notification {
+	position: absolute;
+	top: 5px;
+	right: 14px;
+	z-index: 20;
+}
+
+.personal-notification > ul {
+	display: flex;
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 12px;
+}
+
+.personal-notification li {
+	margin: 0;
+}
+
+.about-site,
+.cell-nav-box,
+.wiki-hoverbox {
+	pointer-events: none;
+}
+
+.wiki-nav {
+	padding: 22px 22px 16px;
+}
+
+.celling-box {
+	display: flex;
+	align-items: center;
+	min-height: 74px;
+}
+
+.celling-logo {
+	display: flex;
+	align-items: center;
+}
+
+.menu-box {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+}
+
+.menu-wrap {
+	display: flex;
+	align-items: stretch;
+	width: 100%;
+}
+
+.wiki-menu-li-1 {
+	position: relative;
+	flex: 0 0 auto;
+}
+
+.wiki-menu-li-1 > .menu-title {
+	display: flex;
+	align-items: center;
+	height: 42px;
+	box-sizing: border-box;
+	padding: 0 16px;
+	color: #4b515a;
+	font-size: 15px;
+	font-weight: 500;
+	white-space: nowrap;
+	border-radius: 4px;
+}
+
+.wiki-menu-li-1:hover > .menu-title,
+.wiki-menu-li-1:focus-within > .menu-title {
+	color: #fff;
+	background: var(--bwiki-blue);
+}
+
+.caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 7px;
+	vertical-align: middle;
+	border-top: 5px dashed currentColor;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+}
+
+.wiki-menu-ul-2 {
+	display: none;
+	position: absolute;
+	top: 42px;
+	left: 0;
+	z-index: 300;
+	min-width: 170px;
+	padding: 7px 0;
+	background: #fff;
+	border: 1px solid var(--bwiki-line);
+	border-top: 3px solid var(--bwiki-blue);
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0 8px 22px rgba(31, 45, 61, .16);
+}
+
+.wiki-menu-li-1:hover > .wiki-menu-ul-2,
+.wiki-menu-li-1:focus-within > .wiki-menu-ul-2 {
+	display: block;
+}
+
+.wiki-menu-li-2 > .menu-title {
+	display: block;
+	box-sizing: border-box;
+	padding: 9px 16px;
+	color: #4b515a;
+	white-space: nowrap;
+}
+
+.wiki-menu-li-2 > .menu-title:hover,
+.wiki-menu-li-2 > .menu-title:focus {
+	color: var(--bwiki-blue-dark);
+	background: #edf8fc;
+}
+
+.form-box {
+	margin-left: auto;
+}
+
+.nav-search-box {
+	position: relative;
+}
+
+#searchform,
+#simpleSearch1 {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+#searchInput {
+	box-sizing: border-box;
+	width: 100%;
+	height: 36px;
+	padding: 0 40px 0 12px;
+	color: #454b54;
+	background: #f7f8fa;
+	border: 1px solid #ccd3da;
+	border-radius: 4px 0 0 4px;
+	outline: 0;
+}
+
+#searchInput:focus {
+	background: #fff;
+	border-color: var(--bwiki-blue);
+	box-shadow: inset 0 0 0 1px var(--bwiki-blue);
+}
+
+.search-close {
+	position: absolute;
+	right: 72px;
+	z-index: 2;
+	width: 28px;
+	height: 34px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.search-close::before,
+.search-close::after {
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	width: 1px;
+	height: 14px;
+	background: #a5adb6;
+	content: "";
+	transform: rotate(45deg);
+}
+
+.search-close::after {
+	transform: rotate(-45deg);
+}
+
+.searchButton {
+	box-sizing: border-box;
+	height: 36px;
+	padding: 0 13px;
+	color: #fff;
+	background: var(--bwiki-blue);
+	border: 1px solid var(--bwiki-blue);
+	cursor: pointer;
+}
+
+#mw-searchButton {
+	display: none;
+}
+
+#searchButton {
+	border-radius: 0 4px 4px 0;
+}
+
+.searchButton:hover {
+	background: var(--bwiki-blue-dark);
+	border-color: var(--bwiki-blue-dark);
+}
+
+.mobile-nav-menu {
+	display: none;
+}
+
+/* Article container */
+#content.mw-body {
+	box-sizing: border-box;
+	min-height: 500px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+}
+
+#siteNotice {
+	margin-bottom: 12px;
+}
+
+#siteNotice:empty {
+	display: none;
+}
+
+.top-news {
+	display: flex;
+	align-items: center;
+	min-height: 34px;
+	padding: 0 12px;
+	color: #666;
+	background: #f8fbfd;
+	border: 1px solid #e4eef3;
+	border-radius: 3px;
+}
+
+.news-logo {
+	width: 18px;
+	height: 18px;
+	margin-right: 8px;
+	border-radius: 50%;
+	background: var(--bwiki-blue);
+}
+
+.news-title {
+	font-weight: 600;
+}
+
+.mw-indicators {
+	float: right;
+}
+
+/* #headBox / .firstHeadingTools / .vectorMenu / .pc-serve-msg 的布局与外观
+   完全由 resources/bundle 中的官方 BWIKI 样式包提供，此处不再自定义。 */
+
+.pc-serve-msg p,
+.serve-msg p {
+	display: inline;
+	margin: 0;
+}
+
+.serve-cont {
+	color: #606975;
+}
+
+#bodyContent {
+	position: relative;
+	padding-top: 20px;
+}
+
+#siteSub,
+#contentSub,
+#contentSub2 {
+	margin-bottom: 8px;
+	color: var(--bwiki-muted);
+	font-size: 12px;
+}
+
+.mw-jump-link {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+}
+
+.mw-jump-link:focus {
+	left: 8px;
+	top: 8px;
+	z-index: 1000;
+	padding: 8px 12px;
+	background: #fff;
+	border: 2px solid var(--bwiki-blue);
+}
+
+#mw-content-text {
+	min-height: 160px;
+}
+
+#mw-content-text::after,
+#bodyContent::after {
+	display: table;
+	clear: both;
+	content: "";
+}
+
+#mw-content-text h2 {
+	margin-top: 1.4em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid var(--bwiki-line);
+}
+
+#mw-content-text h3 {
+	margin-top: 1.2em;
+}
+
+#mw-content-text table.wikitable {
+	background: #fff;
+	border-color: #cfd6dd;
+}
+
+#mw-content-text table.wikitable > * > tr > th {
+	background: #f2f6f8;
+	border-color: #cfd6dd;
+}
+
+.toc,
+.toccolours {
+	box-sizing: border-box;
+	max-width: 360px;
+	padding: 12px 16px;
+	background: #fafcfd;
+	border: 1px solid #d9e1e6;
+	border-radius: 4px;
+}
+
+.toc .toctitle {
+	text-align: center;
+}
+
+.catlinks-allhidden {
+	display: none;
+}
+
+.printfooter {
+	display: none;
+}
+
+.visualClear {
+	clear: both;
+}
+
+/* Contributor block: outer layout follows the bundled rank-buddle.css */
+.rank-title {
+	display: block;
+	margin-bottom: 6px;
+	color: var(--bwiki-muted);
+	font-size: 12px;
+}
+
+.rank-top3 {
+	display: flex;
+}
+
+.rank-item {
+	position: relative;
+}
+
+.image-wrap {
+	display: block;
+	width: 42px;
+	height: 42px;
+}
+
+.bwiki-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-weight: 700;
+	background: linear-gradient(135deg, var(--bwiki-blue), #72d1ef);
+	border-radius: 50%;
+}
+
+.rank-item-detail-wrap {
+	display: none;
+	position: absolute;
+	top: 48px;
+	right: 0;
+	z-index: 50;
+	width: 250px;
+	padding: 12px;
+	background: #fff;
+	border: 1px solid var(--bwiki-line);
+	border-radius: 4px;
+	box-shadow: 0 8px 24px rgba(31, 45, 61, .15);
+}
+
+.rank-item:hover .rank-item-detail-wrap,
+.rank-item:focus-within .rank-item-detail-wrap {
+	display: block;
+}
+
+.rank-item-detail {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.detail-pic {
+	width: 44px;
+	height: 44px;
+}
+
+.detail-des {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.des-name {
+	overflow: hidden;
+	font-weight: 600;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.detail-follow {
+	padding: 3px 8px;
+	color: var(--bwiki-blue);
+	background: #edf9fd;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+/* Footer with BWIKI-compatible classes */
+.footer-public {
+	margin-top: 4px;
+	padding: 0;
+	color: #333;
+	background: #fafbfc;
+}
+
+.footer-box {
+	display: flex;
+	max-width: var(--bwiki-width);
+	margin: 0 auto;
+}
+
+.footer-logo-list {
+	flex: 0 0 210px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 1px solid #d7dde2;
+}
+
+.footer-logo {
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	color: #8e98a2;
+}
+
+.footer-text {
+	flex: 1 1 auto;
+	padding-left: 34px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.footer-text p {
+	margin: 3px 0;
+}
+
+.footer-link {
+	color: #66727e;
+}
+
+#footer {
+	box-sizing: border-box;
+	max-width: var(--bwiki-width);
+	margin: 0 auto;
+	padding: 14px 20px 26px;
+	color: #333;
+	font-size: 12px;
+}
+
+#footer-info {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+
+#footer-info li {
+	margin: 2px 0;
+}
+
+/* Mobile */
+/* Below 768px the official bundle styles the toggle, the bell and the
+ * search icon; these fallback sizes only apply to the desktop/tablet nav. */
+@media (min-width: 768px) {
+	.navbar-toggle {
+		display: none;
+		padding: 8px 9px;
+		background: transparent;
+		border: 1px solid #d2d8de;
+		border-radius: 3px;
+	}
+
+	#navNote,
+	#navSearch,
+	#tocBtn {
+		width: 26px;
+		height: 26px;
+		cursor: pointer;
+	}
+
+	#navNote svg,
+	#navSearch svg {
+		width: 22px;
+		height: 22px;
+		fill: #59636e;
+	}
+}
+
+.toc-contents::before {
+	display: block;
+	font-size: 20px;
+	line-height: 26px;
+	content: "☷";
+}
+
+@media (max-width: 767px) {
+	.visible-xs { display: inline-flex !important; }
+	/* The drawer must stay a block panel even though it carries .visible-xs. */
+	.mobile-nav-menu.visible-xs { display: block !important; }
+	.hidden-xs { display: none !important; }
+	.visible-md-block,
+	.visible-lg-block { display: none !important; }
+	.hidden-lg { display: inline-flex !important; }
+
+	.game-bg {
+		padding: 0 15px 100px;
+	}
+
+	.wiki-header {
+		margin: 0;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	/* Mobile header/drawer geometry comes from the official bundle rules
+	 * (.nav-head 75px, #navBar float+scale, #navNote scale(.5),
+	 * #navSearch right:50px, .mobile-nav-menu 45% + left:-100%,
+	 * .menutop, .back-icon, .li-menu-*, .mobile-sns-wrap). */
+
+	#tocBtn {
+		display: none; /* the reference hides the floating TOC button here */
+	}
+
+	.ul-menu-1,
+	.ul-menu-2 {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.personal-notification {
+		display: none;
+	}
+
+	/* The reference offers editing through the user-btn pencil icon on
+	 * phones; MediaWiki's bracketed [编辑|编辑源代码] section links would
+	 * duplicate it, so hide them like the reference does. */
+	.mw-editsection {
+		display: none;
+	}
+
+	.form-box.mobile-search-open {
+		display: block !important;
+		position: absolute;
+		top: 75px;
+		left: 0;
+		z-index: 390;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px;
+		background: #fff;
+		box-shadow: 0 6px 12px rgba(31, 45, 61, .12);
+	}
+
+	#content.mw-body {
+		border-radius: 0;
+	}
+
+	#headBox {
+		display: block;
+		padding-bottom: 8px;
+	}
+
+	.pc-serve-msg {
+		display: none;
+	}
+
+	.wiki-componment-rank {
+		float: none;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0 0 12px;
+	}
+
+	.rank-title {
+		margin: 0;
+	}
+
+	.footer-public {
+		display: none !important;
+	}
+
+	#footer {
+		padding: 16px;
+	}
+
+	.toc.bwiki-toc-open,
+	.toccolours.bwiki-toc-open {
+		display: block;
+		position: fixed;
+		top: 62px;
+		left: 10px;
+		right: 10px;
+		z-index: 500;
+		max-width: none;
+		max-height: 70vh;
+		overflow: auto;
+		box-shadow: 0 10px 30px rgba(31, 45, 61, .25);
+	}
+}

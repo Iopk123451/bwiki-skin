@@ -1,0 +1,130 @@
+{{!
+	BWIKI skin template.
+	The DOM follows the public BWIKI Vector-legacy shell while all data comes
+	from this MediaWiki installation. No remote BWIKI CSS, JS or widget is used.
+}}
+<div class="visible-md-block visible-lg-block"><div id="biliGameHeader" style="height:50px"></div></div>
+<meta name="spm_prefix" content="555.117">
+
+<div class="game-bg container">
+	<div class="wiki-header navbar navbar-default navbar-static-top container">
+		<div class="nav-head">
+			<span id="tocBtn" class="toc-contents" role="button" tabindex="0" aria-label="{{msg-navigation-heading}}"></span>
+			<button type="button" id="navBar" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="{{bwiki-notifications-href}}" class="mw-echo-notification-badge-nojs hidden-lg" id="navNote" aria-label="{{msg-personaltools}}">
+				<svg viewBox="0 0 60 60" aria-hidden="true"><path d="M55.3 43.2 51 35V25c0-10.2-7.3-18.8-17-20.6V4a4 4 0 0 0-8 0v.4C16.3 6.2 9 14.8 9 25v10l-4.3 8.2A6 6 0 0 0 10 52h13.1a7 7 0 0 0 13.8 0H50a6 6 0 0 0 5.3-8.8ZM10 46l5-9.5V25a15 15 0 0 1 30 0v11.5l5 9.5H10Z"/></svg>
+				<span class="notice-circle-red"></span>
+			</a>
+			<span id="navSearch" class="visible-xs" role="button" tabindex="0" aria-label="{{msg-search}}">
+				<svg viewBox="0 0 60 60" aria-hidden="true"><path class="st0" d="m43 38.7 15.2 15.2a3 3 0 0 1-4.2 4.2L38.7 43A24 24 0 1 1 43 38.7ZM24 42a18 18 0 1 0 0-36 18 18 0 0 0 0 36Z"/></svg>
+			</span>
+			<a class="wiki-logo" href="{{bwiki-mainpage-href}}"><img class="pic-logo" src="{{bwiki-logo-src}}" alt="{{msg-sitetitle}}"></a>
+		</div>
+
+		<div id="p-personal" class="personal-notification" aria-label="{{msg-personaltools}}">
+			<ul {{{html-user-language-attributes}}}>{{{html-bwiki-personal-items}}}</ul>
+		</div>
+		<div class="about-site"></div>
+		{{{html-bwiki-user-status}}}
+
+		<div class="wiki-nav hidden-xs" id="navbar">
+			<div class="row celling-box">
+				<div class="col-xs-2 celling-logo"><a class="wiki-logo" href="{{bwiki-mainpage-href}}"><img class="pic-logo" src="{{bwiki-logo-src}}" alt="{{msg-sitetitle}}"></a></div>
+				<div class="col-xs-10 cell-nav-box"></div>
+				<div class="menu-box col-xs-8">
+					{{{html-bwiki-desktop-menus}}}
+					<div class="wiki-hoverbox"><div class="wiki-hoverbox-inner"></div></div>
+				</div>
+				{{#data-search-box}}
+				<div class="form-box col-xs-4">
+					<div class="nav-search-box wiki-search-box">
+						<form action="{{form-action}}" id="searchform" role="search">
+							<div id="simpleSearch1">
+								{{{html-input}}}<button id="searchDelete" class="search-close" type="button" title="清空搜索"></button>{{{html-button-search-fallback}}}{{{html-button-search}}}
+							</div>
+						</form>
+					</div>
+				</div>
+				{{/data-search-box}}
+			</div>
+		</div>
+
+		<div class="mobile-mask" id="mobileMask"></div>
+		<div class="mobile-nav-menu visible-xs" id="bwikiDrawer" role="dialog" aria-modal="true" aria-hidden="true">
+			<div class="menutop">
+				<i class="back-icon mobile-left" role="button" tabindex="0" aria-label="{{msg-bwiki-back}}"></i>
+				<h2 class="navTop"><img src="{{bwiki-logo-src}}" alt="{{msg-sitetitle}}"></h2>
+				<span class="bwiki-drawer-title"></span>
+				<button type="button" class="bwiki-drawer-close" aria-label="{{msg-bwiki-close}}">&times;</button>
+			</div>
+			<div class="bwiki-drawer-body">
+				{{{html-bwiki-mobile-menus}}}
+				{{{html-bwiki-mobile-sns}}}
+			</div>
+		</div>
+	</div>
+
+	<div id="content" class="container mw-body" role="main">
+		<a id="top"></a>
+		<div id="siteNotice" class="mw-body-content">{{{html-site-notice}}}</div>
+		<div class="mw-indicators">
+			{{#array-indicators}}<div id="{{id}}" class="mw-indicator">{{{html}}}</div>{{/array-indicators}}
+		</div>
+
+		<div id="headBox">
+			{{{html-title-heading}}}
+			<div id="firstHeadingTools" class="firstHeadingTools">
+				<div id="p-cactions" role="navigation" class="vectorMenu visible-md-block visible-lg-block" aria-labelledby="p-cactions-label">
+					<h3 id="p-cactions-label"><span>{{msg-bwiki-wiki-functions}}</span><span class="glyphicon glyphicon-menu-down"></span></h3>
+					<ul class="menu">{{{html-bwiki-action-items}}}</ul>
+				</div>
+				<div class="user-btn">
+					<div class="user-btn-left"><span class="reset" role="button" tabindex="0"><i></i><span class="left-title-reset">刷</span></span><span class="history" role="button" tabindex="0"><i></i><span class="left-title-history">历</span></span></div>
+					<div class="user-btn-right"><span class="remarkWiki" role="button" tabindex="0"><i></i><span class="right-title">编</span></span></div>
+				</div>
+				<div class="serve-msg"><p><span></span>阅读</p>&nbsp;&nbsp;&nbsp;&nbsp;<p><span>{{bwiki-last-modified}}</span>更新</p>&nbsp;&nbsp;&nbsp;&nbsp;<p><span class="serve-name">最新编辑:</span><span class="serve-cont">{{bwiki-last-editor}}</span></p></div>
+				<div class="pc-serve-msg"><p>阅读：<span></span></p>&nbsp;&nbsp;<p>更新日期：<span>{{bwiki-last-modified}}</span></p>&nbsp;&nbsp;<p><span class="serve-name">最新编辑：</span><span class="serve-cont">{{bwiki-last-editor}}</span></p></div>
+			</div>
+		</div>
+
+		<div id="bodyContent" class="mw-body-content">
+			<div id="siteSub" class="noprint">{{msg-tagline}}</div>
+			<div id="contentSub" {{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
+			{{#html-undelete-link}}<div id="contentSub2">{{{.}}}</div>{{/html-undelete-link}}
+			{{{html-user-message}}}
+			<div id="jump-to-nav"></div>
+			<a class="mw-jump-link" href="#navbar">跳到导航</a>
+			<a class="mw-jump-link" href="#searchInput">跳到搜索</a>
+			{{{html-bwiki-contributors}}}
+			{{{html-body-content}}}
+			{{{html-categories}}}
+			<div class="visualClear"></div>
+		</div>
+	</div>
+</div>
+
+<div class="footer-public visible-md-block visible-lg-block">
+	<div class="footer-box">
+		<div class="footer-logo-list"><div class="footer-logo-other"></div><a href="{{bwiki-mainpage-href}}" class="footer-logo">BWIKI</a><div class="footer-culture-logo"><span></span></div></div>
+		<div class="footer-text">
+			<p><a class="footer-link" href="{{bwiki-mainpage-href}}">首页</a> | <a class="footer-link" href="{{bwiki-mainpage-href}}">测试站</a></p>
+			<p class="p3"></p>
+			<p class="p-18">本网站用于 MediaWiki 皮肤和功能测试</p>
+			<p>请遵守站点规则，妥善保存账号，并合理使用测试环境。</p>
+			<p>BWIKI TEST SITE | COPYRIGHT © {{bwiki-current-year}}</p>
+			<p class="p-18"></p>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+</div>
+
+{{#data-footer}}
+<div id="footer" role="contentinfo" {{{html-user-language-attributes}}}>
+	<ul id="footer-info">{{#data-info}}{{#array-items}}<li id="footer-info-{{name}}">{{{html}}}</li>{{/array-items}}{{/data-info}}</ul>
+	<div style="clear:both"></div>
+</div>
+{{/data-footer}}

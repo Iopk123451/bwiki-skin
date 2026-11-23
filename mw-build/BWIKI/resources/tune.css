@@ -1,0 +1,740 @@
+/*
+ * Alignment layer.
+ * Values below are taken from the computed styles measured on
+ * https://wiki.biligame.com/wdjs/1145 and are applied last so that they win
+ * over the bundled BWIKI stylesheets and the local Vector legacy module.
+ */
+
+html,
+body {
+	font-family: sans-serif;
+}
+
+body {
+	background-color: #f6f6f6;
+}
+
+.wiki-nav {
+	padding: 0;
+}
+
+.wiki-menu-li-1 > .menu-title {
+	padding: 0;
+	font-size: 14px;
+}
+
+/* Article titles: BWIKI hides the heading on the main page only.
+   The main-page class contains non-ASCII chars; use CSS escapes so the
+   selector survives static-file serving without a charset header. */
+#firstHeading {
+	display: block;
+	flex: 1 1 auto;
+	width: auto;
+}
+
+body.page-\9996\9875 #firstHeading,
+body.page-Main_Page #firstHeading {
+	display: none;
+}
+
+#searchInput {
+	display: inline-block;
+}
+
+/* Touch support: the bundle opens .vectorMenu menus via opacity/visibility. */
+.vectorMenu.menu-open .menu {
+	opacity: 1;
+	visibility: visible;
+}
+
+#content,
+#bodyContent,
+.mw-body-content {
+	color: #202122;
+}
+
+#bodyContent {
+	padding-top: 0;
+}
+
+.catlinks {
+	border: 1px solid #a2a9b1;
+}
+
+/* ------------------------------------------------------------------
+ * Header interactions (aligned with the reference BWIKI behaviour).
+ * tune.css is served after the official bundles, so these rules win.
+ * ------------------------------------------------------------------ */
+
+/* Notification bell: the bundle hides #navNote by default and the original
+ * site's JS un-hides it. On tablets (768-1199px) it shows like on the
+ * reference; below 768px the bundle's own scaled bell style applies and on
+ * large desktops Bootstrap's .hidden-lg (!important) keeps it hidden. */
+@media (min-width: 768px) and (max-width: 1199px) {
+	#navNote {
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 26px;
+		height: 26px;
+		float: none;
+		padding: 0;
+		transform: none;
+		right: auto;
+		top: auto;
+	}
+}
+
+#navNote .notice-circle-red {
+	display: none; /* unread state is not tracked locally */
+}
+
+/* Desktop dropdown: open on hover / keyboard focus / tap (menu-open class
+ * toggled by skin.js). Same specificity as the bundle's display:none rule,
+ * but loaded later, so this wins. */
+.wiki-menu-li-1:hover > .wiki-menu-ul-2,
+.wiki-menu-li-1:focus-within > .wiki-menu-ul-2,
+.wiki-menu-li-1.menu-open > .wiki-menu-ul-2 {
+	display: block;
+}
+
+/* Dropdown look: reference uses the flat black panel from pluginsCommon. */
+.menu-wrap .wiki-menu-ul-2 {
+	top: 48px;
+	width: 200px;
+	min-width: 200px;
+	padding: 10px 0;
+	background: #000;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.menu-wrap .wiki-menu-li-1 > .menu-title {
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.85);
+	border-radius: 0;
+}
+
+.menu-wrap .wiki-menu-li-1 > .menu-title .caret {
+	border-top-color: rgba(0, 0, 0, 0.45);
+}
+
+.menu-wrap .wiki-menu-li-1:hover > .menu-title,
+.menu-wrap .wiki-menu-li-1:focus-within > .menu-title,
+.menu-wrap .wiki-menu-li-1.menu-open > .menu-title {
+	color: #fff;
+	background: #000;
+}
+
+.menu-wrap .wiki-menu-li-1:hover > .menu-title .caret,
+.menu-wrap .wiki-menu-li-1:focus-within > .menu-title .caret,
+.menu-wrap .wiki-menu-li-1.menu-open > .menu-title .caret {
+	border-top-color: #fff;
+}
+
+.menu-wrap .wiki-menu-li-1 .wiki-menu-li-2 > .menu-title {
+	padding: 0;
+	line-height: 48px;
+	color: #fff;
+	text-align: center;
+	background: transparent;
+}
+
+.menu-wrap .wiki-menu-li-1 .wiki-menu-li-2 > .menu-title:hover,
+.menu-wrap .wiki-menu-li-1 .wiki-menu-li-2 > .menu-title:focus {
+	color: #00b6ff;
+	background: transparent;
+}
+
+/* Third-level flyout panel. The bundle only provides the level-3 item look
+ * (.wiki-menu-li-3: black, 200px, centred) and hides the panel; hover /
+ * keyboard / click (.menu-open from skin.js) reveal it to the right, like
+ * the reference site's JS does. Selectors stay as specific as the bundle's
+ * display:none rule and load after it, so they win the cascade. */
+.menu-wrap .wiki-menu-li-2 {
+	position: relative;
+}
+
+/* The bundle clips the level-2 panel (overflow-x:hidden; max-height:346px),
+ * which would crop the level-3 flyout entirely. Release the clip; menus on
+ * this wiki are short so the panel never needs to scroll. */
+.menu-wrap .wiki-menu-li-1 .wiki-menu-ul-2 {
+	overflow: visible;
+	max-height: none;
+}
+
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-li-2:hover > .wiki-menu-ul-3,
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-li-2:focus-within > .wiki-menu-ul-3,
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-li-2.menu-open > .wiki-menu-ul-3,
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-ul-3 .wiki-menu-li-3:hover > .wiki-menu-ul-4,
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-ul-3 .wiki-menu-li-3:focus-within > .wiki-menu-ul-4,
+.menu-wrap .wiki-menu-ul-2 .wiki-menu-ul-3 .wiki-menu-li-3.menu-open > .wiki-menu-ul-4 {
+	display: block;
+}
+
+.menu-wrap .wiki-menu-ul-3,
+.menu-wrap .wiki-menu-ul-4 {
+	position: absolute;
+	top: 0;
+	left: 100%;
+	z-index: 320;
+	background: #000;
+	border-left: 4px solid #fff;
+}
+
+.menu-wrap .wiki-menu-li-3 > .menu-title-1,
+.menu-wrap .wiki-menu-li-4 > .menu-title-1 {
+	display: inline-block;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+
+.menu-wrap .wiki-menu-li-3 > .menu-title-1:hover,
+.menu-wrap .wiki-menu-li-3 > .menu-title-1:focus {
+	color: #00b6ff;
+}
+
+/* MediaWiki's editor stylesheet is rem-based (.mw-editfont-*: 0.8125rem),
+ * but Bootstrap 3 pins the root to html { font-size: 10px }, collapsing the
+ * edit box text to ~8px. Give the editing UI readable sizes again. */
+.mw-editfont-monospace,
+.mw-editfont-sans-serif,
+.mw-editfont-serif,
+.mw-editfont-monospace.oo-ui-textInputWidget > .oo-ui-inputWidget-input,
+.mw-editfont-sans-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,
+.mw-editfont-serif.oo-ui-textInputWidget > .oo-ui-inputWidget-input,
+#wpTextbox1 {
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* Fixed navigation bar shown once the in-page nav scrolls out of view
+ * (equivalent of the reference site's .wiki-nav-celling behaviour). */
+.bwiki-celling {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	background: #fff;
+	border-bottom: 1px solid #000;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bwiki-celling.bwiki-celling-show {
+	display: block;
+}
+
+.bwiki-celling .wiki-nav {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 22px;
+	border-top: none;
+	background: #fff;
+}
+
+.bwiki-celling .celling-box {
+	min-height: 60px;
+}
+
+.bwiki-celling .celling-logo {
+	display: flex !important;
+}
+
+.bwiki-celling .celling-logo .pic-logo {
+	height: 44px;
+}
+
+.bwiki-celling .cell-nav-box {
+	display: none !important;
+}
+
+/* ------------------------------------------------------------------
+ * Mobile drawer, rebuilt from scratch.
+ *
+ * The bundled stylesheets were written for the desktop menu and re-used
+ * on phones: .ul-menu-1 stays a flex row, .li-menu-1>a is pinned to 80px,
+ * rows carry 15px left padding plus a full-row ::before overlay, and the
+ * section submenu is positioned with its own `left` offsets. All of that
+ * fights a real drawer, so every layout-critical declaration below is
+ * marked !important to win against the bundle regardless of specificity.
+ *
+ * Geometry: full-height white panel over a dimming mask; section rows
+ * push a submenu panel in from the right; deeper levels use an inline
+ * accordion.
+ * ------------------------------------------------------------------ */
+@media (max-width: 767px) {
+	/* ---------- the panel ---------- */
+	.mobile-nav-menu {
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		right: auto !important;
+		bottom: 0 !important;
+		width: min(84vw, 340px) !important;
+		max-width: 340px !important;
+		height: 100% !important;
+		max-height: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		background: #fff !important;
+		box-shadow: 2px 0 14px rgba(0, 0, 0, 0.18);
+		transform: translateX(-100%);
+		transition: transform 0.25s ease;
+		overflow: hidden !important;
+		z-index: 1100;
+	}
+
+	.mobile-nav-menu.mobile-nav-open {
+		transform: translateX(0) !important;
+	}
+
+	.mobile-mask {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.45);
+		z-index: 1090;
+	}
+
+	.mobile-mask.mobile-mask-open {
+		display: block;
+	}
+
+	/* ---------- header ---------- */
+	.mobile-nav-menu .menutop {
+		position: relative;
+		z-index: 6;
+		display: flex !important;
+		align-items: center;
+		box-sizing: border-box;
+		width: auto !important;
+		height: 56px !important;
+		margin: 0 !important;
+		padding: 0 8px 0 16px !important;
+		background: #fff !important;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.mobile-nav-menu .menutop .navTop {
+		display: flex !important;
+		align-items: center;
+		flex: 1 1 auto;
+		height: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: hidden;
+	}
+
+	.mobile-nav-menu .menutop .navTop img {
+		height: 30px;
+		width: auto;
+		max-width: 100%;
+	}
+
+	.mobile-nav-menu .bwiki-drawer-close {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		padding: 0;
+		font-size: 26px;
+		line-height: 1;
+		color: #8a8a8a;
+		background: transparent;
+		border: 0;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	.mobile-nav-menu .back-icon {
+		display: none;
+		position: relative;
+		top: auto;
+		left: auto;
+		flex: 0 0 auto;
+		width: 30px;
+		height: 30px;
+		margin: 0 4px 0 0;
+		cursor: pointer;
+	}
+
+	.mobile-nav-menu .back-icon:before {
+		display: block;
+		width: 10px;
+		height: 10px;
+		margin: 9px 0 0 10px;
+		border-left: 2px solid #333;
+		border-bottom: 2px solid #333;
+		transform: rotate(45deg);
+		content: "";
+	}
+
+	.mobile-nav-menu .bwiki-drawer-title {
+		display: none;
+		flex: 1 1 auto;
+		min-width: 0;
+		margin: 0 !important;
+		padding: 0 !important;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 56px;
+		color: #222;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Submenu state: back arrow + section name replace logo and close. */
+	.mobile-nav-menu.bwiki-sub-open .menutop .navTop,
+	.mobile-nav-menu.bwiki-sub-open .bwiki-drawer-close {
+		display: none !important;
+	}
+
+	.mobile-nav-menu.bwiki-sub-open .back-icon {
+		display: block;
+	}
+
+	.mobile-nav-menu.bwiki-sub-open .bwiki-drawer-title {
+		display: block;
+	}
+
+	/* ---------- scrolling list ---------- */
+	.mobile-nav-menu .bwiki-drawer-body {
+		position: absolute;
+		top: 56px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Reset spacing only — never force `display` on every list here, or the
+	 * collapsed level-3 accordion (.ul-menu-3, display:none by default)
+	 * would be painted open. */
+	.mobile-nav-menu ul {
+		width: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		list-style: none !important;
+		background: transparent;
+	}
+
+	.mobile-nav-menu .ul-menu-1,
+	.mobile-nav-menu .ul-menu-2 {
+		display: block !important;
+	}
+
+	.mobile-nav-menu li {
+		float: none !important;
+		flex: none !important;
+		width: 100% !important;
+		box-sizing: border-box;
+		text-align: left !important;
+	}
+
+	/* The bundle paints a full-row ::before overlay on the items (it made
+	 * the <li> the touch target); the rebuilt rows are plain links. */
+	.mobile-nav-menu li:before {
+		display: none !important;
+		content: none !important;
+	}
+
+	/* ---------- level 1 rows ---------- */
+	.mobile-nav-menu .ul-menu-1 > .li-menu-1 {
+		position: static !important;
+		padding: 0 !important;
+		border-right: 0 !important;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.mobile-nav-menu .ul-menu-1 > .li-menu-1 > a {
+		position: relative;
+		display: block !important;
+		box-sizing: border-box;
+		width: 100% !important;
+		height: 50px !important;
+		margin: 0 !important;
+		padding: 0 38px 0 16px !important;
+		font-size: 15px;
+		line-height: 50px !important;
+		color: #222 !important;
+		text-align: left;
+		text-decoration: none !important;
+		background: none !important;
+	}
+
+	.mobile-nav-menu .ul-menu-1 > .li-menu-1 > a:active {
+		background: #f7f7f7 !important;
+	}
+
+	/* ---------- section submenu panel ---------- */
+	.mobile-nav-menu .ul-menu-2 {
+		position: absolute !important;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 4;
+		display: block !important;
+		width: auto !important;
+		background: #fff;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		transform: translateX(100%);
+		transition: transform 0.25s ease;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.mobile-nav-menu .li-menu-1.submenu-open > .ul-menu-2 {
+		transform: translateX(0);
+	}
+
+	.mobile-nav-menu .ul-menu-2 > .li-menu-2 {
+		position: static !important;
+		padding: 0 !important;
+		border-bottom: 1px solid #f5f5f5;
+	}
+
+	.mobile-nav-menu .ul-menu-2 > .li-menu-2 > a {
+		position: relative;
+		display: block !important;
+		box-sizing: border-box;
+		width: 100% !important;
+		height: 48px !important;
+		margin: 0 !important;
+		padding: 0 38px 0 16px !important;
+		font-size: 14px;
+		line-height: 48px !important;
+		color: #333 !important;
+		text-align: left;
+		text-decoration: none !important;
+		background: none !important;
+	}
+
+	.mobile-nav-menu .ul-menu-2 > .li-menu-2 > a:active {
+		background: #f7f7f7 !important;
+	}
+
+	/* ---------- deeper levels: inline accordion ---------- */
+	.mobile-nav-menu .ul-menu-3 {
+		position: static !important;
+		display: none !important;
+		width: auto !important;
+		border: 0 !important;
+		background: #fafafa;
+	}
+
+	.mobile-nav-menu li.sub-open > .ul-menu-3 {
+		display: block !important;
+		padding: 4px 0 !important;
+	}
+
+	.mobile-nav-menu .ul-menu-3 .li-menu-3 {
+		border-bottom: 1px solid #f2f2f2;
+	}
+
+	.mobile-nav-menu .ul-menu-3 .li-menu-3 > a {
+		position: relative;
+		display: block !important;
+		box-sizing: border-box;
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 16px 0 28px !important;
+		font-size: 14px;
+		line-height: 44px !important;
+		color: #555 !important;
+		text-align: left;
+		text-decoration: none !important;
+		background: none !important;
+	}
+
+	/* Taps on mobile must not leave a focus ring behind; keyboard users
+	 * still get a visible one through :focus-visible. */
+	.mobile-nav-menu,
+	.mobile-nav-menu * {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.mobile-nav-menu a:focus {
+		outline: none;
+	}
+
+	.mobile-nav-menu a:focus-visible {
+		outline: 2px solid #00b6ff;
+		outline-offset: -2px;
+	}
+
+	/* ---------- chevrons ---------- */
+	/* The bundle renders a separate <i class="mobile-right"> plus a hidden
+	 * .caret; the rebuilt rows draw the chevron on the link itself. */
+	.mobile-nav-menu .mobile-right {
+		display: none !important;
+	}
+
+	.mobile-nav-menu .caret {
+		display: none !important;
+	}
+
+	.mobile-nav-menu a[href="javascript:;"]:after {
+		position: absolute;
+		top: 50%;
+		right: 17px;
+		width: 8px;
+		height: 8px;
+		margin-top: -5px;
+		border-top: 1.5px solid #b5b5b5;
+		border-right: 1.5px solid #b5b5b5;
+		transform: rotate(45deg);
+		content: "";
+	}
+
+	.mobile-nav-menu li.sub-open > a[href="javascript:;"]:after {
+		margin-top: -2px;
+		transform: rotate(135deg);
+	}
+
+	/* ---------- footer links ---------- */
+	.mobile-nav-menu .mobile-sns-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 18px;
+		padding: 18px 16px 30px;
+		border-top: 1px solid #f0f0f0;
+		font-size: 13px;
+	}
+
+	.mobile-nav-menu .mobile-sns-wrap a {
+		color: #666 !important;
+		text-decoration: none;
+	}
+
+	/* The page behind an open drawer must not scroll. */
+	body.bwiki-drawer-open {
+		overflow: hidden;
+	}
+}
+
+/* The floating TOC button stays hidden on every width (reference behaviour);
+ * the span is display:inline by default and would push the header logo down. */
+#tocBtn {
+	display: none;
+}
+
+/* Right-hand header slot: the reference site shows "我的消息 / 关于本站"
+ * here; this skin shows the native MediaWiki login state instead. */
+.bwiki-user-status {
+	position: absolute;
+	top: 8px;
+	right: 15px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+	line-height: 28px;
+	z-index: 5;
+}
+
+.bwiki-user-status a {
+	color: rgba(0, 0, 0, 0.85);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.bwiki-user-status a:hover {
+	color: #00b6ff;
+}
+
+.bwiki-user-status .bwiki-user-name {
+	font-weight: 500;
+}
+
+.bwiki-user-status .bwiki-user-avatar {
+	display: inline-flex;
+	width: 28px;
+	height: 28px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.bwiki-user-status .bwiki-user-sep {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+/* Phones already carry the bell and the search icon on the right; the login
+ * state lives in the drawer there. */
+@media (max-width: 767px) {
+	.bwiki-user-status {
+		display: none;
+	}
+}
+
+/* SocialProfile avatar inside the header user status (falls back to the
+ * first-letter badge when SocialProfile is not installed). */
+.bwiki-user-status .bwiki-user-avatar .bwiki-avatar-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+}
+
+/* SocialProfile avatar inside the page-contributor badge. The wrapper keeps
+ * the circular box (.image-wrap 42px / .detail-pic 44px); the image fills it. */
+#biliContributors .bwiki-avatar .bwiki-avatar-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+}
+
+/* ------------------------------------------------------------------
+ * Special pages: like the reference BWIKI, they carry no page tools.
+ * The contributor strip, the reading/update line and the (empty)
+ * wiki-functions menu only belong to content pages.
+ * ------------------------------------------------------------------ */
+body.ns-special #biliContributors,
+body.ns-special .serve-msg,
+body.ns-special .pc-serve-msg,
+/* The element carries Bootstrap's .visible-md-block/.visible-lg-block, whose
+ * display:block is !important — so the override needs !important too. */
+body.ns-special #p-cactions {
+	display: none !important;
+}
+
+/* ------------------------------------------------------------------
+ * Font-size repairs. Bootstrap 3 pins the root font-size to 10px, and
+ * several MediaWiki components size their text in rem, which collapses
+ * to unreadable sizes. Give them explicit pixel sizes again.
+ * ------------------------------------------------------------------ */
+
+/* Codex form components (login, create account, preferences). */
+.mw-htmlform-codex .cdx-label__label__text,
+.mw-htmlform-codex .cdx-button,
+.mw-htmlform-codex .cdx-message__content,
+.mw-htmlform-codex .cdx-checkbox__label,
+#mw-createaccount-cta,
+#mw-createaccount-cta a {
+	font-size: 14px;
+}
+
+/* Page subtitle links ("←首页" on view-source, log links on history). */
+#mw-content-subtitle,
+#mw-content-subtitle a {
+	font-size: 14px;
+}

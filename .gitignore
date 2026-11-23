@@ -1,0 +1,24 @@
+# ---- 私密信息（绝不提交）----
+.secrets.env
+*.cookies.txt
+captured_cookies_real.json
+cookies*.json
+
+# ---- 项目内部笔记（含账号密码等）----
+.workbuddy/
+
+# ---- 收集的本地数据 / 抓包产物 ----
+mw-build/*
+!mw-build/BWIKI/
+!mw-build/cdp.py
+!mw-build/ftp_push.py
+!mw-build/q_custom_pages.py
+!mw-build/manage_test_wiki.py
+!mw-build/build_bundle.py
+!mw-build/snap.py
+
+# ---- 构建产物与旧原型 ----
+outputs/
+opk-wiki/
+ch4.html
+ls.dbg.php
